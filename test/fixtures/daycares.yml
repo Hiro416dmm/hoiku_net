@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  daycare_name: MyString
+  address: MyString
+  phone: MyString
+  pattern: MyString
+  dayaweek: MyString
+  weekday: MyString
+  sat: MyString
+  sun: MyString
+  capacity: MyString
+  short_time: MyString
+  rate: MyString
+
+two:
+  daycare_name: MyString
+  address: MyString
+  phone: MyString
+  pattern: MyString
+  dayaweek: MyString
+  weekday: MyString
+  sat: MyString
+  sun: MyString
+  capacity: MyString
+  short_time: MyString
+  rate: MyString

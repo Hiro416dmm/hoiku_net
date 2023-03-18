@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_12_021804) do
+ActiveRecord::Schema.define(version: 2023_03_15_073940) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,7 +24,25 @@ ActiveRecord::Schema.define(version: 2023_03_12_021804) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "daycares", force: :cascade do |t|
+    t.string "daycare_name"
+    t.string "address"
+    t.string "phone"
+    t.string "pattern"
+    t.string "dayaweek"
+    t.string "weekday"
+    t.string "sat"
+    t.string "sun"
+    t.string "capacity"
+    t.string "short_time"
+    t.string "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "name_kana"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

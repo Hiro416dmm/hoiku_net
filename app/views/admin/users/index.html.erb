@@ -1,0 +1,33 @@
+<div class="container px-5 px-sm-0">
+  <div class='row' style="margin-top:25px;">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h1>会員一覧</h1>
+    </div>
+    <div class="col-sm-10 px-sm-0 mx-auto mb-5">
+    <table class='table table-hover'>
+        <thead class="table-active">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>会員ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.name, admin_users_path, class: "text-dark font-weight-bold" %></td>
+            <td><%= user.email %></td>
+            <% if user.is_deleted == false %>
+              <td class="text-success font-weight-bold">有効</td>
+            <% else %>
+              <td class="text-muted">退会</td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

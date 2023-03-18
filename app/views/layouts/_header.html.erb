@@ -1,13 +1,20 @@
 <header class="bg-secondary text-monospace">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #c2302a;">
+  <link rel="stylesheets" href="public/botton.css" />
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #afeeee;">
     <div class="container">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
       <a class="navbar-brand" href="/"><span>保育NET</span></a>
-cd
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <!--adminログイン時のheader-->
         <% if admin_signed_in? %>
+        <li>
+        <%= link_to "保育施設一覧", admin_daycares_path,class: 'nav-link text-light' %>
+        </li>
+        <li>
+        <%=  link_to "会員一覧", admin_users_path,class: 'nav-link text-light' %>
+        </li>
         <li>
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'nav-link text-light' %>
         </li>
@@ -16,8 +23,12 @@ cd
         <% elsif user_signed_in? %>
         <li class= "nav-link text-light">
           ようこそ！ <%= link_to users_my_page_path, class: "text-white font-weight-bold" do %>
+          <%= current_user.name %>
           <% end %>
           さん
+        </li>
+        <li>
+          <%= link_to "About", about_path,class: 'nav-link text-light' %>
         </li>
         <li>
           <%= link_to "マイページ", users_my_page_path, class: "nav-link text-light" %>
@@ -25,6 +36,10 @@ cd
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
         </li>
+        <div class="button013">
+          <a href="destroy_user_session_path">ボタンのデザイン</a>
+        </div>
+
         <% else %>
 
         <!--ログイン前のヘッダー-->
@@ -37,6 +52,10 @@ cd
         <li>
           <%= link_to "ログイン", new_user_session_path ,class: 'nav-link text-light' %>
         </li>
+        <div class="button013">
+          <a href="new_user_registration_path">ボタンのデザイン</a>
+        </div>
+
         <% end %>
         </ul>
       </div>
