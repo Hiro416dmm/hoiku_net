@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col">
+      <h4 class="ml-5">保育施設新規登録</h4>
+    </div>
+  </div>
+  <%= form_with model: [:admin, @daycare] do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+</div>

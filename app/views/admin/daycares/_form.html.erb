@@ -1,0 +1,80 @@
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">保育施設画像</label>
+    <div class="col-md-5">
+      <%= f.file_field :image, accept: "image/*"%>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">保育施設名</label>
+    <div class="col-md-5">
+     <%= f.text_field :name, style: "width:60%;", placeholder: "保育施設名" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">電話番号</label>
+    <div class="col-md-5">
+     <%= f.phone_field :phone, style: "width:60%;", placeholder: "電話番号" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">施設類型</label>
+    <div class="col-md-5">
+     <%= f.text_field :pattern, style: "width:60%;", placeholder: "施設類型" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">開所曜日</label>
+    <div class="col-md-5">
+     <%= f.text_field :dayaweek, style: "width:60%;", placeholder: "開所曜日" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">開所時間（平日）</label>
+    <div class="col-md-5">
+     <%= f.text_field :weekday, style: "width:60%;", placeholder: "開所時間（平日）" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">開所時間（土曜日）</label>
+    <div class="col-md-5">
+     <%= f.text_field :sat, style: "width:60%;", placeholder: "開所時間（土曜日）" %>
+    </div>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">開所時間（日曜日、祝日）</label>
+    <div class="col-md-5">
+     <%= f.text_field :sun, style: "width:60%;", placeholder: "開所時間（日曜日、祝日）" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">利用定員数</label>
+    <div class="col-md-5">
+     <%= f.text_field :capacity, style: "width:60%;", placeholder: "利用定員数" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-2 offset-md-2">一時預かり事業の実施</label>
+    <div class="col-md-5">
+     <%= f.text_field :short_time, style: "width:60%;", placeholder: "一時預かり事業の実施" %>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-2 offset-md-5">
+      <div class="actions">
+        <% if local_assigns[:edit_flag].present? %>
+        <%= f.submit "変更を保存" ,class: 'btn btn-success' %>
+        <% else %>
+        <%= f.submit "新規登録" ,class: 'btn btn-success' %>
+        <% end %>
+
+      </div>
+     </div>
+  </div>
+
