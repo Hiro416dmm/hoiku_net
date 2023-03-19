@@ -32,10 +32,10 @@ class Admin::DaycaresController < ApplicationController
       render edit
     end
 
-    private
+  end
+  private
 
     def daycare_params
-      params.require(:daycare).permit(:name, :image, :description)
+      params.require(:daycare).permit(:daycare_name, :image, :description, :phone, :pattern, :dayaweek, :weekday, :sat, :sun, :capacity, :short_time)
     end
-  end
 end

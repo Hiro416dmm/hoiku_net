@@ -19,9 +19,11 @@
             </thead>
             <tbody>
                 <% @daycares.each do |daycare| %>
+                <tr>
                     <td><%= daycare.id %></td>
-                    <td><%= link_to daycare.name, admin_daycare_path(daycare.id) %></td>
+                    <td><%= link_to daycare.daycare_name, admin_daycare_path(daycare.id) %></td>
                     <td><%= daycare.phone %></td>
+                </tr>
                 <% end %>
             </tbody>
         </table>
