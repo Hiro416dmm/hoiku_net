@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get 'daycares/index'
-  get 'daycares/new'
-  get 'daycares/create'
-  get 'daycares/show'
-  get 'daycares/edit'
-  get 'daycares/update'
     # 顧客用
     # URL /customers/sign_in ...
     devise_for :users,skip: [:passwords], controllers: {
@@ -20,8 +14,13 @@ Rails.application.routes.draw do
 
     scope module: :public do
       root to: 'homes#top'
+      get 'daycares/index', to: 'daycares#index'
+      get 'daycares/:id', to: 'daycares#show'
+      resources :daycares, only: [:index, :new, :create, :edit, :show, :update]
+      resources :post_comments, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy]
       get 'about' => 'homes#about', as: 'about'
-      get '/users/information/edit' => 'userrs#edit'
+      get '/users/information/edit' => 'users#edit'
       patch '/users/information' => 'users#update'
       get '/users/my_page' => 'users#show'
       get '/users/unsubscribe' => 'users#unsubscribe'

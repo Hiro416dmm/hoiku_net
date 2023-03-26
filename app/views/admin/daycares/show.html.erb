@@ -3,6 +3,69 @@
     <div class="colcol-md-3">
       <h4>保育施設詳細</h4>
       <%= @daycare.inspect %>
+      <div class="row">
+        <div class="col-md-3">
+          <%#= image_tag @deycare.get_image(200,200) %>
+        </div>
+        <div class="col-md-9">
+          <p>保育施設名</p>
+          <h3><%= @daycare_name %></h3>
+          <div class="mb-3 row">
+            <p class="col-md-3">電話番号</p>
+            <h5 class="col-md-5">
+              <%= @daycare.phone %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">施設類型</p>
+            <h5 class="col-md-5">
+              <%= @daycare.pattern %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">開所曜日</p>
+            <h5 class="col-md-5">
+              <%= @daycare.dayaweek %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">開所時間（平日）</p>
+            <h5 class="col-md-5">
+              <%= @daycare.weekday %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">開所時間（土曜日）</p>
+            <h5 class="col-md-5">
+              <%= @daycare.sat %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">開所時間（祝・日）</p>
+            <h5 class="col-md-5">
+              <%= @daycare.sun %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">利用定員数</p>
+            <h5 class="col-md-5">
+              <%= @daycare.capacity %>
+            </h5>
+          </div>
+          <div class="mb-3 row">
+            <p class="col-md-3">一時預かり事業の実施</p>
+            <h5 class="col-md-5">
+             <%= @daycare.short_time %>
+            </h5>
+          </div>
+          <p><%#= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+          <div class="row">
+            <div class="col-md-2 offset-md-5">
+              <div><%= link_to "編集する", edit_admin_daycare_path, class: "btn btn-lg btn-success" %></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

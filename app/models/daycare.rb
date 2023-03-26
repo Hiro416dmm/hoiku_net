@@ -1,5 +1,6 @@
 class Daycare < ApplicationRecord
   has_one_attached :image
+  has_many :post_comments, dependent: :destroy
 
   def get_image(width, height)
     unless image.attached?

@@ -34,11 +34,14 @@
           <%= link_to "マイページ", users_my_page_path, class: "nav-link text-light" %>
         </li>
         <li>
+        <%= link_to "保育施設一覧", daycares_index_path,class: 'nav-link text-light' %>
+        </li>
+        <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
         </li>
-        <div class="button013">
-          <a href="destroy_user_session_path">ボタンのデザイン</a>
-        </div>
+        <!--<div class="button013">-->
+          <!--<a href="destroy_user_session_path">ボタンのデザイン</a>-->
+        <!--</div>-->
 
         <% else %>
 
@@ -52,9 +55,9 @@
         <li>
           <%= link_to "ログイン", new_user_session_path ,class: 'nav-link text-light' %>
         </li>
-        <div class="button013">
-          <a href="new_user_registration_path">ボタンのデザイン</a>
-        </div>
+        <!--<div class="button013">-->
+          <!--<a href="new_user_registration_path">ボタンのデザイン</a>-->
+        <!--</div>-->
 
         <% end %>
         </ul>

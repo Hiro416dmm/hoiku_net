@@ -1,11 +1,6 @@
 <div class="container">
     <div class="row">
         <h4 class="col-md-3">保育施設一覧</h4>
-        <div class="col-md-1">
-            <%= link_to new_admin_daycare_path do %>
-            <button class="btn-secondary rounded-circle" >+</button>
-            <% end %>
-        </div>
     </div>
     <div class="row">
         <table class="table">
@@ -14,16 +9,14 @@
                     <th>施設ID</th>
                     <th>施設名</th>
                     <th>電話番号</th>
-                    <th>コメント</th>
                 </tr>
             </thead>
             <tbody>
                 <% @daycares.each do |daycare| %>
                 <tr>
                     <td><%= daycare.id %></td>
-                    <td><%= link_to daycare.daycare_name, admin_daycare_path(daycare.id) %></td>
+                    <td><%= link_to daycare.daycare_name, daycare_path(daycare.id) %></td>
                     <td><%= daycare.phone %></td>
-                    <td><%#= link_to "#{post.post_comments.count} コメント", post_image_path(post_image.id) %></td>
                 </tr>
                 <% end %>
             </tbody>
