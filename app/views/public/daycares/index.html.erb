@@ -17,6 +17,20 @@
                     <td><%= daycare.id %></td>
                     <td><%= link_to daycare.daycare_name, daycare_path(daycare.id) %></td>
                     <td><%= daycare.phone %></td>
+                    <td>
+                    <div id="star-rate<%= daycare.id%>"> </td>
+                        <script>
+                            $('#star-rate<%= daycare.id %>').empty();
+                            $('#star-rate<%= daycare.id%>').raty({
+                                size      : 36,
+                                starOff   : '<%= asset_path('star.off.png') %>',
+                                starOn    : '<%= asset_path('star.on.png') %>',
+                                half      : false,
+                                readOnly: true,
+                                score: <%= daycare.star %>,
+                            });
+                        </script>
+                    </div>
                 </tr>
                 <% end %>
             </tbody>

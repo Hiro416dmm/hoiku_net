@@ -17,7 +17,7 @@
           <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= link_to user.name, admin_users_path, class: "text-dark font-weight-bold" %></td>
+            <td><%= link_to user.name, admin_user_url(1), class: "text-dark font-weight-bold" %></td>
             <td><%= user.email %></td>
             <% if user.is_deleted == false %>
               <td class="text-success font-weight-bold">有効</td>
