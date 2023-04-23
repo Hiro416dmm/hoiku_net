@@ -1,14 +1,26 @@
 <div class="container">
     <div class="row">
-        <h4 class="col-md-3">保育施設一覧</h4>
-    </div>
-    <div class="row">
+        <h4 class="col-md-6">保育施設一覧</h4>
+        <div class="row justify-content-end mb-4">
+            <%#= link_to '新しい順', daycares_path(latest: "true") %>
+            <%#= link_to '古い順', daycares_path(old: "true") %>
+            <%#= link_to '評価の高い順', daycares_path(star_count: "true") %>
+
+        </div>
+        <div class="row justify-content-end mb-4">
+          <%= form_with url: daycares_index_path, method: :get, local: true do |f| %>
+          <%= f.text_field :search %>
+          <%= f.submit '検索する', name: nil %>
+          <% end %>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
                     <th>施設ID</th>
                     <th>施設名</th>
                     <th>電話番号</th>
+                    <th>コメント</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,20 +29,17 @@
                     <td><%= daycare.id %></td>
                     <td><%= link_to daycare.daycare_name, daycare_path(daycare.id) %></td>
                     <td><%= daycare.phone %></td>
+                    <!--<td><%#= l daycare.created_at %></td>-->
+
+
+                    </div></td>
                     <td>
-                    <div id="star-rate<%= daycare.id%>"> </td>
-                        <script>
-                            $('#star-rate<%= daycare.id %>').empty();
-                            $('#star-rate<%= daycare.id%>').raty({
-                                size      : 36,
-                                starOff   : '<%= asset_path('star.off.png') %>',
-                                starOn    : '<%= asset_path('star.on.png') %>',
-                                half      : false,
-                                readOnly: true,
-                                score: <%= daycare.star %>,
-                            });
-                        </script>
-                    </div>
+                        <% if daycare.comments.present? %>
+                        <%= daycare.comments[0].comment %>
+                        <% else %>
+                            <p>No comment found</p>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>

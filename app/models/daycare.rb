@@ -1,6 +1,11 @@
 class Daycare < ApplicationRecord
   has_one_attached :image
-  has_many :post_comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
+
 
   def get_image(width, height)
     unless image.attached?

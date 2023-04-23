@@ -23,8 +23,15 @@
                     <td><%= daycare.id %></td>
                     <td><%= link_to daycare.daycare_name, admin_daycare_path(daycare.id) %></td>
                     <td><%= daycare.phone %></td>
-                    <td><%#= link_to "#{post.post_comments.count} コメント", post_image_path(post_image.id) %></td>
+                    <td>
+                        <% if daycare.comments.present? %>
+                        <%= daycare.comments[0].comment %>
+                        <% else %>
+                            <p>No comment found</p>
+                        <% end %>
+                    </td>
                 </tr>
+
                 <% end %>
             </tbody>
         </table>

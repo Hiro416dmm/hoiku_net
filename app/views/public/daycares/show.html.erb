@@ -1,89 +1,103 @@
+
 <div class="container">
+  <h4 class="center">保育施設詳細</h4>
   <div class="row">
-    <h4>保育施設詳細</h4>
-      <%= @daycare.inspect %>
+      <%#= @daycare.inspect %>
       <% if user_signed_in? %>
-      <div class="mb-3 row">
-        <p class="col-md-3">保育施設名</p>
-        <h5 class="col-md-5">
-          <%= @daycare_name %>
+        <p class="col-md-6 text-nowrap" "mb-3 row">保育施設名</p>
+        <h5 class="col-md-6">
+          <%= @daycare.daycare_name %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">電話番号</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">電話番号</p>
+        <h5 class="col-md-6">
           <%= @daycare.phone %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">施設類型</p>
-        <h5 class="col-md-5">
-         <%= @daycare.pattern %>
+        <p class="col-md-6 text-nowrap" "mb-3 row">施設類型</p>
+        <h5 class="col-md-6">
+          <%= @daycare.pattern %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">開所曜日</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">開所曜日</p>
+        <h5 class="col-md-6">
          <%= @daycare.dayaweek %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">開所時間（平日）</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">開所時間（平日）</p>
+        <h5 class="col-md-6">
          <%= @daycare.weekday %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">開所時間（土曜日）</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">開所時間（土曜日）</p>
+        <h5 class="col-md-6">
          <%= @daycare.sat %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">開所時間（祝・日）</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">開所時間（祝・日）</p>
+        <h5 class="col-md-6">
          <%= @daycare.sun %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">利用定員数</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">利用定員数</p>
+        <h5 class="col-md-6">
          <%= @daycare.capacity %>
         </h5>
-      </div>
-      <div class="mb-3 row">
-        <p class="col-md-3">一時預かり事業の実施</p>
-        <h5 class="col-md-5">
+        <p class="col-md-6 text-nowrap" "mb-3 row">一時預かり事業の実施</p>
+        <h5 class="col-md-6">
          <%= @daycare.short_time %>
         </h5>
-      </div>
       <% end %>
-      <div>
-        <p>コメント件数：<%= @post.post_comments.count %></p>
-        <% @post.post_comments.each do |post_comment| %>
+
+      <div class="container">
+        <p>コメント件数：<%= @daycare.comments.count %></p>
+          <div class="row justify-content-end mb-4">
+            <%= link_to '新しい順', daycare_path(@daycare,"desc") %>
+            <%= link_to '古い順', daycare_path(@daycare,"asc") %>
+          </div>
+
+        <% @comments.each do |comment| %>
           <p><%#= image_tag post_comment.user.get_profile_image(100,100) %></p>
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <%= comment.user.name %>
+          <%= comment.comment %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <div class="star-rate<%= comment.id%>">
+              <script>
+                raty(
+                  document.querySelector('.star-rate<%= comment.id%>'),
+               {
+                  size: 36,
+                  starOff : '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  half: false,
+                  readOnly: true,
+                  score: <%= comment.rate %>,
+                }
+
+                );
+
+              </script>
+             </div>
         <% end %>
       </div>
+
+
       <div>
-        <%= form_with model: [@post, @post_comment],url:post_comments_path do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= form_with model: [@daycare, @comment],url: daycare_comments_path(@daycare) do |f| %>
+          <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに" %>
+           <div id="star-rate">
+            <%= f.hidden_field :rate %>
+              <script>
+
+
+                    let elem = document.querySelector('#star-rate');
+                    let opt = {
+                      size: 36,
+                      starOff : '<%= asset_path('star-off.png') %>',
+                      starOn : '<%= asset_path('star-on.png') %>',
+                      half: false,
+                      scoreName: "comment[rate]"
+                    };
+                  raty(elem,opt);
+              </script>
+            </div>
           <%= f.submit "送信する" %>
         <% end %>
       </div>
-      <div id="star-rate<%= @daycare.id%>">
-        <script>
-          $('#star-rate<%= @daycare.id %>').empty();
-          $('#star-rate<%= @daycare.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star.off.png') %>',
-            starOn    : '<%= asset_path('star.on.png') %>',
-            half      : false,
-            readOnly  : true,
-            score: <%= @daycare.star %>,
-          });
-        </script>
-      </div>
+
+
   </div>
 </div>
