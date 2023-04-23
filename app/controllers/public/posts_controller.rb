@@ -1,5 +1,5 @@
-class PostsController < ApplicationController
-  
+class Public::PostsController < ApplicationController
+
   #ユーザーのログイン状態を確かめる。indexはログインしてなくても閲覧可能にしてます。
   before_action :authenticate_user!, only: [:show, :create]
   def index
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @comments = @post.comments  #投稿詳細に関連付けてあるコメントを全取得
     @comment = current_user.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
   end
-  
+
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
